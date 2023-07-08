@@ -35,6 +35,11 @@ section form div {
   padding-right: 10px;
 }
 
-  output {
+  .counter {
   font-family: "Bungee", sans-serif;
+  color: #555149;
 }
+
+  .counter.exceeded {
+    color: red;
+  }
