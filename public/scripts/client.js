@@ -40,6 +40,19 @@ const createTweetElement = function(tweet) {
 }
 
 const postTweet = () => {
+  event.preventDefault()
+  // retreive the value of tweet-form, remove leading or trailing whitespace
+  const tweetContent = $(".tweet-form textarea").val().trim();
+  if (tweetContent === "") {
+    alert("Please enter a tweet")
+    return;
+  };
+
+  if(tweetContent.length > 140) {
+    alert("Tweet exceeds the maximum character limit")
+    return;
+  }
+
   const data = $(".tweet-form").serialize();
   $.post("/tweets", data).then((result) => {
   });
