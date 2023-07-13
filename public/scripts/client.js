@@ -50,19 +50,22 @@ const postTweet = () => {
   // retreive the value of tweet-form, remove leading or trailing whitespace
   const tweetContent = $(".tweet-form textarea").val().trim();
   if (tweetContent === "") {
-    alert("Please enter a tweet")
+    $("#error-message").text("❗ Please enter a tweet").show();
     return;
   };
 
   if(tweetContent.length > 140) {
-    alert("Tweet exceeds the maximum character limit")
+    $("#error-message").text("❗ Tweet exceeds the maximum character limit").show();
     return;
   }
+   //If no errors, hide the errorelement
+   $("#error-message").hide();
 
   const data = $(".tweet-form").serialize();
   $.post("/tweets", data).then((result) => {
+    loadTweets();
   });
-  loadTweets();
+ 
 };
 
 $(".tweet-form").on("submit", (event) => {
@@ -84,5 +87,6 @@ const loadTweets = () => {
     },
   });
 };
+$("#error-message").hide();
 loadTweets(); // Call the loadTweets function to fetch and render the tweets
 });

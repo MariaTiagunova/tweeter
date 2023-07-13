@@ -7,6 +7,7 @@
   font-weight: 600;
   color: #555149;
   box-sizing: border-box;
+  margin-top: 30px;
 }
 
 #tweet-text {
@@ -43,3 +44,13 @@ section form div {
   .counter.exceeded {
     color: red;
   }
+
+.error-message {
+  display: none;
+  color: #D8000C;
+	background-color: #fce4e4;
+  border: 3px solid #D8000C;
+  font-size: 20px;
+  margin-top: 10px;
+  padding: 10px;
+}
