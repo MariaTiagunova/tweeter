@@ -5,13 +5,13 @@
  */
 $(document).ready(function() {
   
-
   const renderTweets = function(tweets) {
+    $('#tweet-container').empty(); // Clear existing tweets
     for (let tweet of tweets) {
-    // calls createTweetElement for each tweet
+    // call createTweetElement for each tweet
       const $tweetElement = createTweetElement(tweet);
-       // takes return value and appends it to the tweets container
-      $('#tweet-container').append($tweetElement);
+       // take return value and appends it to the tweets container
+      $('#tweet-container').prepend($tweetElement);
     }
   };
 
@@ -56,6 +56,7 @@ const postTweet = () => {
   const data = $(".tweet-form").serialize();
   $.post("/tweets", data).then((result) => {
   });
+  loadTweets();
 };
 
 $(".tweet-form").on("submit", (event) => {
