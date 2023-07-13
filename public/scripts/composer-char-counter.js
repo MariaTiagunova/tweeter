@@ -1,10 +1,8 @@
 $(document).ready(function() {
-console.log("I'm loaded!")
 
 $('#tweet-text').on('input', function() {
   const text = $(this).val();
   const remainingCount = 140 - text.length;
-  console.log(remainingCount);
   const form = $(this).closest("form");
   const counter = form.find(".counter");
   counter.text(remainingCount);
