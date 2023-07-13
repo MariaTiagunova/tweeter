@@ -65,4 +65,17 @@ const createTweetElement = function(tweet) {
 
 renderTweets(data);
 
+const postTweet = () => {
+  const data = $(".tweet-form").serialize();
+  console.log(data);
+  $.post("/tweets", data).then((result) => {
+    console.log(result);
+  });
+};
+
+$(".tweet-form").on("submit", (event) => {
+  //prevent the default form submission behaviour (refresh)
+  event.preventDefault();
+  postTweet();
+});
 });
