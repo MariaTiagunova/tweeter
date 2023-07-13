@@ -4,33 +4,9 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function() {
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
+  
 
   const renderTweets = function(tweets) {
-    // loops through tweets
     for (let tweet of tweets) {
     // calls createTweetElement for each tweet
       const $tweetElement = createTweetElement(tweet);
@@ -50,7 +26,7 @@ const createTweetElement = function(tweet) {
     </div>
       <h4>${tweet.user.handle}</h4>
     </header>
-    <p>${tweet.content.text}Eu augue ut lectus arcu bibendum at varius</p>
+    <p>${tweet.content.text}</p>
     <footer><div class="date-post">${tweet.created_at}</div>
       <div class="icons">
         <i class="fa-solid fa-flag"></i>
@@ -62,8 +38,6 @@ const createTweetElement = function(tweet) {
     )
     return $tweet
 }
-
-renderTweets(data);
 
 const postTweet = () => {
   const data = $(".tweet-form").serialize();
@@ -78,4 +52,20 @@ $(".tweet-form").on("submit", (event) => {
   event.preventDefault();
   postTweet();
 });
+
+const loadTweets = () => {
+  $.ajax({
+    url: "/tweets",
+    type: "GET",
+    dataType: "json", // Make sure it is set to "json"
+    success: (result) => {
+      console.log(result);
+      renderTweets(result); // Pass the result to the renderTweets function
+    },
+    error: (error) => {
+      console.error("An error occurred: ", error);
+    },
+  });
+};
+loadTweets(); // Call the loadTweets function to fetch and render the tweets
 });
