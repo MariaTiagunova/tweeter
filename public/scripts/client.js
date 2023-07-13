@@ -4,6 +4,12 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function() {
+  //escape function to prevent XSS
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
   
   const renderTweets = function(tweets) {
     $('#tweet-container').empty(); // Clear existing tweets
@@ -26,7 +32,7 @@ const createTweetElement = function(tweet) {
     </div>
       <h4>${tweet.user.handle}</h4>
     </header>
-    <p>${tweet.content.text}</p>
+    <p>${escape(tweet.content.text)}</p>
     <footer><div class="date-post">${timeago.format(tweet.created_at)}</div>
       <div class="icons">
         <i class="fa-solid fa-flag"></i>
