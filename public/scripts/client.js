@@ -27,7 +27,7 @@ const createTweetElement = function(tweet) {
       <h4>${tweet.user.handle}</h4>
     </header>
     <p>${tweet.content.text}</p>
-    <footer><div class="date-post">${tweet.created_at}</div>
+    <footer><div class="date-post">${timeago.format(tweet.created_at)}</div>
       <div class="icons">
         <i class="fa-solid fa-flag"></i>
         <i class="fa-solid fa-repeat"></i>
@@ -41,9 +41,7 @@ const createTweetElement = function(tweet) {
 
 const postTweet = () => {
   const data = $(".tweet-form").serialize();
-  console.log(data);
   $.post("/tweets", data).then((result) => {
-    console.log(result);
   });
 };
 
@@ -59,7 +57,6 @@ const loadTweets = () => {
     type: "GET",
     dataType: "json", // Make sure it is set to "json"
     success: (result) => {
-      console.log(result);
       renderTweets(result); // Pass the result to the renderTweets function
     },
     error: (error) => {
