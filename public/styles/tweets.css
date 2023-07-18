@@ -26,6 +26,10 @@ article.tweet header div {
   justify-content: space-between;
 }
 
+article.tweet h3 {
+  margin-left: 10px;
+}
+
 article.tweet h4 {
   color: #c5cbe3;
   

@@ -36,3 +36,40 @@ body main {
   flex-direction: column;
   justify-content: center;
 }
+
+/* Desktop Styles */
+@media only screen and (min-width: 1024px) {
+
+  body {
+    display: flex;
+    flex-direction: row;
+   }
+
+  header.user-info {
+    flex: 1;
+    padding-left: 0px;
+    padding-top: 0;
+    padding-right: 0px;
+    margin-top: 200px;
+    margin-right: 150px;
+    margin-left: 50px;
+    box-sizing: border-box;
+  }
+
+  main.container {
+    margin-right: 50px;
+    margin-top: 200px;
+    flex: 2; /* Fill available space in the flex container */
+    box-sizing: border-box;
+  }
+
+  main {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+
+  nav {
+    background-color: #4056A1;
+  }
+}
