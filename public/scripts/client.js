@@ -5,7 +5,7 @@
  */
 $(document).ready(function() {
   //escape function to prevent XSS
-  const escape = function (str) {
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
@@ -16,15 +16,15 @@ $(document).ready(function() {
     for (let tweet of tweets) {
     // call createTweetElement for each tweet
       const $tweetElement = createTweetElement(tweet);
-       // take return value and appends it to the tweets container
+      // take return value and appends it to the tweets container
       $('#tweet-container').prepend($tweetElement);
     }
   };
 
 
-const createTweetElement = function(tweet) {
-  let $tweet = $(
-    `<article class="tweet">
+  const createTweetElement = function(tweet) {
+    let $tweet = $(
+      `<article class="tweet">
     <header>
      <div>
       <img src=${tweet.user.avatars} alt = "profile picture" />
@@ -41,52 +41,52 @@ const createTweetElement = function(tweet) {
       </div>
     </footer>
     </article>`
-    )
-    return $tweet
-}
-
-const postTweet = () => {
-  event.preventDefault()
-  // retreive the value of tweet-form, remove leading or trailing whitespace
-  const tweetContent = $(".tweet-form textarea").val().trim();
-  if (tweetContent === "") {
-    $("#error-message").text("❗ Please enter a tweet").show();
-    return;
+    );
+    return $tweet;
   };
 
-  if(tweetContent.length > 140) {
-    $("#error-message").text("❗ Tweet exceeds the maximum character limit").show();
-    return;
-  }
-   //If no errors, hide the errorelement
-   $("#error-message").hide();
+  const postTweet = () => {
+    event.preventDefault();
+    // retreive the value of tweet-form, remove leading or trailing whitespace
+    const tweetContent = $(".tweet-form textarea").val().trim();
+    if (tweetContent === "") {
+      $("#error-message").text("❗ Please enter a tweet").show();
+      return;
+    }
 
-  const data = $(".tweet-form").serialize();
-  $.post("/tweets", data).then((result) => {
-    loadTweets();
-  });
+    if (tweetContent.length > 140) {
+      $("#error-message").text("❗ Tweet exceeds the maximum character limit").show();
+      return;
+    }
+    //If no errors, hide the error element
+    $("#error-message").hide();
+
+    const data = $(".tweet-form").serialize();
+    $.post("/tweets", data).then((result) => {
+      loadTweets();
+    });
  
-};
+  };
 
-$(".tweet-form").on("submit", (event) => {
+  $(".tweet-form").on("submit", (event) => {
   //prevent the default form submission behaviour (refresh)
-  event.preventDefault();
-  postTweet();
-});
-
-const loadTweets = () => {
-  $.ajax({
-    url: "/tweets",
-    type: "GET",
-    dataType: "json", // Make sure it is set to "json"
-    success: (result) => {
-      renderTweets(result); // Pass the result to the renderTweets function
-    },
-    error: (error) => {
-      console.error("An error occurred: ", error);
-    },
+    event.preventDefault();
+    postTweet();
   });
-};
-$("#error-message").hide();
-loadTweets(); // Call the loadTweets function to fetch and render the tweets
+
+  const loadTweets = () => {
+    $.ajax({
+      url: "/tweets",
+      type: "GET",
+      dataType: "json", // Make sure it is set to "json"
+      success: (result) => {
+        renderTweets(result); // Pass the result to the renderTweets function
+      },
+      error: (error) => {
+        console.error("An error occurred: ", error);
+      },
+    });
+  };
+  $("#error-message").hide();
+  loadTweets(); // Call the loadTweets function to fetch and render the tweets
 });
