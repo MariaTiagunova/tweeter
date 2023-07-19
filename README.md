@@ -3,15 +3,15 @@
 Tweeter is a simple, single-page Twitter clone.
 
 The page contains a header, user image, form for adding a new tweet, and tweets feed section.
-!["Mobile page"](https://github.com/MariaTiagunova/tweeter/blob/master/docs/tweeter-mobile-main.png)
+<img src="https://github.com/MariaTiagunova/tweeter/blob/master/docs/tweeter-mobile-main.png" width=600 alt="Mobile page">
 
 Primarily designed for mobile, it also has a desktop version.
 
 Both versions of the page notify users if they're trying to send an empty tweet 
-["Error: empty tweet"](https://github.com/MariaTiagunova/tweeter/blob/master/docs/tweeter-desktop-err-empty.png)
+<img src="https://github.com/MariaTiagunova/tweeter/blob/master/docs/tweeter-desktop-err-empty.png" width=1200 alt="Error: empty tweet">
 
-or the tweet's length exceeds 140 characters:
-["Error: the tweet is too long"](https://github.com/MariaTiagunova/tweeter/blob/master/docs/tweeter-desktop-err-exceed.png)
+or the tweet's length exceeds 140 characters. Also, there is a counter of characters, which turns red when the number exceeds 140.
+<img src="https://github.com/MariaTiagunova/tweeter/blob/master/docs/tweeter-desktop-err-exceed.png" width=1200 alt="Error: the tweet is too long">
 
 ## Getting Started
 
