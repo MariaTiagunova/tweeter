@@ -64,6 +64,8 @@ $(document).ready(function() {
     const data = $(".tweet-form").serialize();
     $.post("/tweets", data).then((result) => {
       loadTweets();
+      // clear the form after the successful submission of the tweet
+      $(".tweet-form")[0].reset();
     });
  
   };
