@@ -21,7 +21,7 @@ $(document).ready(function() {
     }
   };
 
-
+// tweet template to be filled with data
   const createTweetElement = function(tweet) {
     let $tweet = $(
       `<article class="tweet">
@@ -49,11 +49,12 @@ $(document).ready(function() {
     event.preventDefault();
     // retreive the value of tweet-form, remove leading or trailing whitespace
     const tweetContent = $(".tweet-form textarea").val().trim();
+    // check if the tweet is present
     if (tweetContent === "") {
       $("#error-message").text("❗ Please enter a tweet").show();
       return;
     }
-
+    // check if the tweet is less then 140 characters
     if (tweetContent.length > 140) {
       $("#error-message").text("❗ Tweet exceeds the maximum character limit").show();
       return;
@@ -62,13 +63,16 @@ $(document).ready(function() {
     $("#error-message").hide();
 
     const data = $(".tweet-form").serialize();
-    $.post("/tweets", data).then((result) => {
+  $.post("/tweets", data)
+    .then((result) => {
       loadTweets();
-      // clear the form after the successful submission of the tweet
+      // Clear the form after the successful submission of the tweet
       $(".tweet-form")[0].reset();
+    })
+    .catch((error) => {
+      console.error("An error occurred while posting the tweet: ", error);
     });
- 
-  };
+};
 
   $(".tweet-form").on("submit", (event) => {
   //prevent the default form submission behaviour (refresh)
