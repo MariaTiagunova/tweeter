@@ -68,6 +68,8 @@ $(document).ready(function() {
       loadTweets();
       // Clear the form after the successful submission of the tweet
       $(".tweet-form")[0].reset();
+      // Reset the character counter to 140
+      $(".counter").text(140); 
     })
     .catch((error) => {
       console.error("An error occurred while posting the tweet: ", error);
